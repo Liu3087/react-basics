@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>createRef</title>
+</head>
+<body>
+    <!-- 创建一个容器 -->
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作DOM -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 引入babel，用于将jsx转为js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <!-- 引入prop-types，用于对组件标签属性进行限制 -->
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+
+    <script type="text/babel">
+        //创建组件
+        class Demo extends React.Component{
+            // React.createRef调用后可以返回一个容器，该容器可以存储被ref标识的节点，该容器是“专人专用”的
+            myRef1 = React.createRef()
+            myRef2 = React.createRef()
+            //展示左侧数据
+            showData1 = ()=>{
+                alert(this.myRef1.current.value)
+            }
+            //展示右侧数据
+            showData2 = ()=>{
+                alert(this.myRef2.current.value)
+            }
+
+            render(){
+                return (
+                    <div>
+                        <input ref={this.myRef1} type="text" placeholder="点击按钮提示数据"/>
+                        <button onClick={this.showData1}>点击显示左侧数据</button>
+                        <input ref={this.myRef2} onBlur={this.showData2} type="text" placeholder="失去焦点提示数据"/>                       
+                    </div>//箭头函数左侧只有一个参数，右侧只有一句函数体，可以写成上面这种形式
+                )
+            }
+        }
+        //渲染组件到页面
+        ReactDOM.render(<Demo/>,document.getElementById('test'))
+    </script>
+    
+</body>
+</html>

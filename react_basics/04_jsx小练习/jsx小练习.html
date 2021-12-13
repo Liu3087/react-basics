@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello_react</title>
+</head>
+<body>
+    <!-- 准备好一个容器 --> <!-- 一定要有容器 -->
+    <div id="test"></div>
+
+    <!-- 引入react核心库 --> <!-- 注意引入是有顺序的 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom,用于支持react操作DOM -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 引入babel,用于将jsx转为js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    
+    <script type="text/babel"> /* 此处一定要写babel */
+        /*
+            一定注意区分【js语句(代码)】和【js表达式】
+                1.js表达式:一个表达式会产生一个值，可以放在任何需要值得地方
+                    下面这些都是表达式:
+                        (1) a
+                        (2) a+b
+                        (3) demo(1)
+                        (4) arr.map()
+                        (5) function test () {}
+                2.js语句(代码):控制代码走向，没有值
+                    下面这些都是语句(代码):
+                        (1) if(){}
+                        (2) for(){}
+                        (3) switch(){case:...}
+        */
+        // 模拟一些数据
+        const data = ['Angular','React','Vue']
+        //1.创建虚拟DOM
+        const VDOM = (
+            <div>
+                <h1>前端js框架列表</h1>
+                <ul>
+                    { /*这一块只能写js表达式*/
+                        data.map((item,index)=>{
+                            return <li key={index}>{item}</li>
+                        })
+                    }
+                </ul>    
+            </div>
+        )
+        //2.渲染虚拟DOM到页面
+        ReactDOM.render(VDOM,document.getElementById('test'))
+    </script>
+</body>
+</html>
